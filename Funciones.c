@@ -57,6 +57,7 @@ void ActualizarEquipo(SortedMap *Equipos,Equipo *NuevoEquipo){
     }else{
         Aux->Stock=Aux->Stock+NuevoEquipo->Stock;
         Aux->Precio=NuevoEquipo->Precio;
+        if(Aux->Stock<=0) eraseKeySortedMap(Equipos,Aux->Nombre);
         free(NuevoEquipo);
     }
 }
@@ -65,13 +66,18 @@ void ActualizarEquipo(SortedMap *Equipos,Equipo *NuevoEquipo){
 void AgregarRemedios(Map *Remedios,Map *Tipo,Remedio *NuevoRemedio){
     Remedio *Aux=searchMap(Remedios,NuevoRemedio->Marca);
     SortedMap *Aux2=searchMap(Tipo,NuevoRemedio->Tipo);
+    if(!Aux){
+        insertMap(Remedios,NuevoRemedio->Marca,NuevoRemedio);
+    }else{
+        Aux->Stock=Aux->Stock+NuevoRemedio->Stock;
+        Aux->Precio=NuevoRemedio->Precio;
+        if(Aux->Stock<=0) eraseMap(Equipos,Aux->Nombre);
+        free(NuevoRemedio);
+    }
     if(!Aux2){
         Aux2=createSortedMap(CmpSorted);
         insertSortedMap(Aux2,NuevoRemedio->Marca,NuevoRemedio);
         insertMap(Tipo,NuevoRemedio->Tipo,Aux2);
-    }
-    if(!Aux){
-        insertMap(Remedios,NuevoRemedio->Marca,NuevoRemedio);
     }
 }
 
@@ -90,7 +96,11 @@ void Arranque(Map *Tipos,Map *Remedios,SortedMap *Equipos){
             fscanf(Fp,"%[^\n]",&Nombre);
             fgetc(Fp);
             while(fscanf(Fp,"%[^.]",&Nombre)!=EOF){
-                if(strcmp(Nombre,"remedios")==0) break;
+                fgetc(Fp);
+                if(strcmp(Nombre,"remedios")==0){
+                    fgetc(Fp);
+                    break;
+                }
 
                 fscanf(Fp,"%d[^.]",&Stock);
                 fgetc(Fp);
