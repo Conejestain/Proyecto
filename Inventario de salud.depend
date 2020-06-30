@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1592612463 source:c:\users\tomás\desktop\inventario de salud\funciones.c
+	"Funciones.h"
+
+1592920805 c:\users\tomás\desktop\inventario de salud\funciones.h
+	<stdio.h>
+	<string.h>
+	"Map.h"
+	"SortedMap.h"
+
+1592615721 source:c:\users\tomás\desktop\inventario de salud\main.c
+	"Funciones.h"
+
+1587648335 source:c:\users\tomás\desktop\inventario de salud\map.c
+	"Map.h"
+	<stdlib.h>
+	<assert.h>
+
+1587647844 c:\users\tomás\desktop\inventario de salud\map.h
+
+1592612752 source:c:\users\tomás\desktop\inventario de salud\sortedmap.c
+	"SortedMap.h"
+	<stdlib.h>
+	<assert.h>
+
+1575511296 c:\users\tomás\desktop\inventario de salud\sortedmap.h
+
