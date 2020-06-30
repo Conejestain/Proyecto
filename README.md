@@ -1,1 +1,1 @@
-# ProyectoInventarioMedico
+# Proyecto
