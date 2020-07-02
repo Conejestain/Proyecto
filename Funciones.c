@@ -50,6 +50,7 @@ Equipo *CrearEquipo(char Nombre[],int Stock,int Precio,int Uso){
     return Aux;
 }
 
+/*
 void ActualizarEquipo(SortedMap *Equipos,Equipo *NuevoEquipo){
     Equipo *Aux=searchSortedMap(Equipos,NuevoEquipo->Nombre);
     if(!Aux){
@@ -80,7 +81,7 @@ void AgregarRemedios(Map *Remedios,Map *Tipo,Remedio *NuevoRemedio){
         insertMap(Tipo,NuevoRemedio->Tipo,Aux2);
     }
 }
-
+*/
 void Arranque(Map *Tipos,Map *Remedios,SortedMap *Equipos){
             FILE *Fp=NULL;
             Fp=fopen("Inventario.csv", "r");
@@ -88,11 +89,18 @@ void Arranque(Map *Tipos,Map *Remedios,SortedMap *Equipos){
                 printf("\nERROR\nno se a podido encontrar el archivo de arranque(Inventario.csv) fin del programa");
                 return 1;
             }
+
             char Nombre[45];
             char Tipo[45];
             int Stock;
             int Precio;
             int Uso;
+
+            Equipo *AuxEquipo;
+            Remedio *AuxRemedio;
+
+            SortedMap *AuxTipos;
+
             fscanf(Fp,"%[^\n]",&Nombre);
             fgetc(Fp);
             while(fscanf(Fp,"%[^.]",&Nombre)!=EOF){
@@ -111,8 +119,34 @@ void Arranque(Map *Tipos,Map *Remedios,SortedMap *Equipos){
                 fscanf(Fp,"%d[^\n]",&Uso);
                 fgetc(Fp);
 
-                ActualizarEquipo(Equipos,CrearEquipo(Nombre,Stock,Precio,Uso));
+                AuxEquipo=CrearEquipo(Nombre,Stock,Precio,Uso);
+                insertSortedMap(Equipos,AuxEquipo->Nombre,AuxEquipo);
             }
+            while(fscanf(Fp,"%[^.]",&Nombre)!=EOF){
+                fgetc(Fp);
 
+                fscanf(Fp,"%[^.]",&Tipo);
+                fgetc(Fp);
+
+                fscanf(Fp,"%d[^.]",&Stock);
+                fgetc(Fp);
+
+                fscanf(Fp,"%d[^.]",&Precio);
+                fgetc(Fp);
+
+                fscanf(Fp,"%d[^\n]",&Uso);
+                fgetc(Fp);
+
+                AuxRemedio=CrearRemedio(Nombre,Tipo,Stock,Precio,Uso);
+                insertMap(Remedios,AuxRemedio->Marca,AuxRemedio);
+                AuxTipos=searchMap(Tipos,AuxRemedio->Tipo);
+                if(!AuxTipos){
+                    AuxTipos=createSortedMap(CmpSorted);
+                    insertSortedMap(AuxTipos,AuxRemedio->Marca,AuxRemedio);
+                    insertMap(Tipos,AuxRemedio->Tipo,AuxTipos);
+                }else{
+                    insertSortedMap(AuxTipos,AuxRemedio->Marca,AuxRemedio);
+                }
+            }
             fclose(Fp);
 }

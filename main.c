@@ -9,7 +9,7 @@ int main(){
         printf("3-Acceder a equipo medico\n");
         printf("4-Añadir inventario\n");
         printf("5-Cerrar programa\n");
-        scanf("%d ",opcion);
+        scanf("%di",opcion);
         if(opcion==1){
             //se crea informe del dia
 
@@ -22,7 +22,7 @@ int main(){
             printf("2-Mostrar medicinas por tipo \n");
             printf("3-Mostrar todas las medicinas\n");
             printf("4-Volver\n");
-            scanf("%d ",opcion);
+            scanf("%di ",opcion);
             if(opcion==1){
                 //busca medicina por
             }
@@ -40,7 +40,7 @@ int main(){
             printf("1-Buscar equipo por nombre\n");
             printf("2-Mostrar todo el equipo\n");
             printf("3-Volver\n");
-            scanf("%d ",opcion);
+            scanf("%di",opcion);
             if(opcion==1){
 
             }
@@ -58,6 +58,7 @@ int main(){
             //añadir inventario
             printf("1-Añadir medicina");
             printf("2-Actualizar equipo");
+            scanf("%di",opcion);
             if(opcion=1){
 
             }

@@ -25,12 +25,13 @@
 
 1575511296 c:\users\tomás\desktop\inventario de salud\sortedmap.h
 
-1593523383 source:c:\users\tomás\desktop\proyectoinventariosalud\main.c
+1593694071 source:c:\users\tomás\desktop\proyectoinventariosalud\main.c
 	"Funciones.h"
 
-1593523383 c:\users\tomás\desktop\proyectoinventariosalud\funciones.h
+1593620426 c:\users\tomás\desktop\proyectoinventariosalud\funciones.h
 	<stdio.h>
 	<string.h>
+	<stdlib.h>
 	"Map.h"
 	"SortedMap.h"
 
